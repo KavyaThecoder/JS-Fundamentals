@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    div  {
+        margin: 22px;
+        padding: 20px;
+        
+        height:100vh;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        background-color: black;
+        width: 300px;
+        height: 80px;
+        border: 15px groove;
+        padding: 50px;
+        margin: 20px;
+        text-align: center;
+        font-style: bold;
+        color: aliceblue;
+        font-size: 35px;
+        border-color: aliceblue;
+        align-items: center;
+        padding-inline-end: 5px;
+        padding-inline-start: 5px;
+        padding-top: 8px;
+        list-style: none;
+        text-transform: uppercase;
+        box-sizing: content-box;  
+        
+    }
+
+</style>
+</head>
+
+<body>
+    <div id="demo">
+    </div>
+   
+    <script>
+        let demo=document.querySelector('#demo');
+        let currentTime;
+
+        setInterval(() => {
+            myDate = new Date();
+            currentTime = myDate.toLocaleTimeString();
+            currentDate=myDate.toLocaleDateString();
+            console.log(currentDate);
+            //console.log(myDate.toLocaleTimeString());
+           //console.log(currentTime);
+            demo.innerHTML= currentTime+ "  -  " +currentDate;
+        }, 1000);
+        
+
+
+    </script>
+
+</body>
+
+</html>
