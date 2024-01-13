@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- Link Element -->
-    <link rel="stylesheet" href="lightMode.css">
+    <link rel="stylesheet" href="../lightMode.css">
 </head>
 
 <body>
@@ -15,8 +15,8 @@
     <div class="container">
         <div id="time"></div>
         <div id="date"></div>
-        <button id="btn" onclick="changeTimeFormat()">24Hour</button>
-        <button id="changeTheme" onclick="changeTheme()" >Dark Mode</button>
+        <button id="btn">24Hour</button>
+        <button id="changeTheme" >Dark Mode</button>
     </div>
 
 </body>
@@ -25,32 +25,18 @@
    
     let mybtn= document.getElementById("btn");
     let themeStylesheet = document.querySelector("link")
-    let changeThemeBTN=document.querySelector("#changeTheme");
+    let changeThemeBTN = document.querySelector("#changeTheme");
     let currentTime;
     let is24HourFormat = false;
     let isDarkMode = false;
     
     
-    function changeTimeFormat(){
-        is24HourFormat = !is24HourFormat; 
-    }
-    function changeTheme(){
-        isDarkMode = !isDarkMode;
-        console.log(isDarkMode);
-        if(isDarkMode){
-            themeStylesheet.setAttribute('href','darkMode.css');
-            changeThemeBTN.innerHTML="Light mode";
-        }
-        else{
-            changeThemeBTN.innerHTML="Dark Mode";
-            themeStylesheet.setAttribute('href' , 'lightMode.css');
-        }
-
-    }
-
-
-    setInterval(() => {
-        let myDate = new Date();
+    mybtn.addEventListener('click',(r)=>{
+        console.log(r)
+        
+        setInterval(() => {
+            let myDate = new Date();
+            is24HourFormat = !is24HourFormat; 
         // Hold time in the varibale
         if(is24HourFormat){
             currentTime = `${myDate.getHours()} : ${myDate.getMinutes()} : ${myDate.getSeconds()} `;
@@ -67,8 +53,21 @@
         document.getElementById("time").innerHTML = currentTime;
     }, 1000);
 
-  
+    })
 
+    changeThemeBTN.addEventListener('click',(e)=>{
+
+        isDarkMode = !isDarkMode;
+        console.log(isDarkMode);
+        if(isDarkMode){
+            themeStylesheet.setAttribute('href','../darkMode.css');
+            changeThemeBTN.innerHTML="Light mode";
+        }
+        else{
+            changeThemeBTN.innerHTML="Dark Mode";
+            themeStylesheet.setAttribute('href' , '../lightMode.css');
+            }
+    })
 
 </script>
 

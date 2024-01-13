@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        .container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 12px;
+        }
+        button{
+            width: 80px;
+            height: 50px;
+            border-radius: 12px;
+            font-size: 50px;
+        }
+        
+        #increment{
+            background-color: powderblue;
+        }
+        #decrement{
+            background-color: aquamarine;
+        }
+        .output{
+            background-color: black;
+            margin: 14px;
+            margin-bottom: 200px;
+            padding: 5px;
+            width: 32px;
+            display: inline;
+            border-radius: 10px;
+            color: white;
+            font-size: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            Min:
+            <span id="min"></span>
+            Max:
+            <span id="max"></span> 
+        </h1>
+        <button id="increment">+</button>    
+        <div class="output"></div>
+        <button id="decrement">-</button>    
+    </div>
+</body>
+<script>
+    let max = parseInt(prompt("enter the max valuelet"));
+    let min = parseInt(prompt("enter min value"));
+    let decrementBtn=document.getElementById("decrement");
+    let incrementBtn=document.getElementById("increment");
+    let output=document.querySelector('.output');
+
+    document.querySelector("#max").innerHTML = max;
+    document.querySelector("#min").innerHTML = min;
+
+    output.innerHTML = min;
+    
+    let value = min;
+
+
+   decrementBtn.addEventListener('click' , ()=>{
+    console.log(typeof value)
+        if(value > min){
+            value--;
+            // Add the result to the output div
+            output.innerHTML = value;
+        }else{
+            alert("Minimum value is 0 ")
+        }
+   })
+
+   incrementBtn.addEventListener('click' , ()=>{
+        if(value < max){
+            // Add the result to the output div
+            value++;
+            output.innerHTML=value;
+        }
+        else{
+            alert("Maximum value is 10")
+        }
+   })
+
+
+    
+   
+
+    
+</script>
+</html>
