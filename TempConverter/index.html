@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TEMPERATURE CONVERTER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">
+            TEMPERATURE CONVERTER
+        </h1>
+        <form>
+            <div class="mb-3">
+                <select name="" id="type" class="form-select">
+                    <option value="celToF"> From Cel TO F
+                    <option>
+                    <option value="farToC" selected> From F TO C
+                    <option>
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="temp" class="mt-3 pe-3" class="form-label">
+                    Enter the temp to Convert
+                </label>
+                <input id="temp" type="text" value="0" class="form-control" />
+            </div>
+
+            <div class="text-center">
+              <button id="submitBtn" type="submit" class="btn btn-warning btn-lg">Submit</button>
+            </div>
+        </form>
+        <h2 class="text-center">Result</h2>
+        <div id="result" class="text-center bg-primary text-dark rounded" style="height: 50px; font-size:33px">
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    let btnSubmit = document.querySelector("#submitBtn");
+    let resultDiv = document.getElementById("result");
+    let type = document.querySelector("#type");
+
+
+    btnSubmit.addEventListener('click', (e) => {
+
+        e.preventDefault();
+
+
+        let tempInput = parseInt(document.getElementById("temp").value);
+
+        console.log(typeof type.value);
+
+        let result;
+
+        if (type.value == "farToC") {
+            result = farToC(tempInput);
+
+        }
+        if (type.value == "celToF") {
+            result = celToF(tempInput);
+        }
+        resultDiv.innerHTML = result;
+    });
+
+    function celToF(cel) {
+        return (cel * (9 / 5)) + 32;
+    }
+
+
+    function farToC(far) {
+        return ((far - 32) * (5 / 9));
+    }
+
+</script>
+
+</html>
