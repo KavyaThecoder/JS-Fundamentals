@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Link Element -->
+    <link rel="stylesheet" href="lightMode.css">
+</head>
+
+<body>
+    
+
+    <div class="container">
+        <div id="time"></div>
+        <div id="date"></div>
+        <button id="btn" onclick="changeTimeFormat()">24Hour</button>
+        <button id="changeTheme" onclick="changeTheme()" >Dark Mode</button>
+    </div>
+
+</body>
+
+<script>
+   
+    let mybtn= document.getElementById("btn");
+    let themeStylesheet = document.querySelector("link")
+    let changeThemeBTN=document.querySelector("#changeTheme");
+    let currentTime;
+    let is24HourFormat = false;
+    let isDarkMode = false;
+    
+    
+    function changeTimeFormat(){
+        is24HourFormat = !is24HourFormat; 
+    }
+    function changeTheme(){
+        isDarkMode = !isDarkMode;
+        console.log(isDarkMode);
+        if(isDarkMode){
+            themeStylesheet.setAttribute('href','darkMode.css');
+            changeThemeBTN.innerHTML="Light mode";
+        }
+        else{
+            changeThemeBTN.innerHTML="Dark Mode";
+            themeStylesheet.setAttribute('href' , 'lightMode.css');
+        }
+
+    }
+
+
+    setInterval(() => {
+        let myDate = new Date();
+        // Hold time in the varibale
+        if(is24HourFormat){
+            currentTime = `${myDate.getHours()} : ${myDate.getMinutes()} : ${myDate.getSeconds()} `;
+           mybtn.innerText= "12Hour";
+            // console.log(formattedTime);
+        }
+        else{
+            currentTime = myDate.toLocaleTimeString();
+            mybtn.innerText= "24Hour";  
+        }
+        // Date hold
+        currentDate = myDate.toLocaleDateString();
+        document.querySelector('#date').innerHTML =  currentDate;
+        document.getElementById("time").innerHTML = currentTime;
+        
+        let alarmTime = "9:39:43 PM"
+        
+        if (currentTime == alarmTime){
+            // console.log("inside")
+            alert("ALARM HO GYA")
+        }
+        
+    }, 1000);
+
+//   Propmt Take time from user hr min
+// modify string according to this 9:39:43 PM
+// 9:15 AM
+
+</script>
+
+</body>
+
+</html>
