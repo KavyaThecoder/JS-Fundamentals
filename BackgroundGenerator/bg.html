@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+      <h1>Background Generator</h1>
+      <h1 id="msg">Welcome back Khushi</h1>
+      
+    <div class="container">
+      <button id="red" class="btn btn-danger">Red</button>
+      <button id="green" class="btn btn-success">Green</button>
+      <button id="Yellow" class="btn btn-warning">Yellow</button>
+      <button id="lightblue" class="btn btn-info">lightBlue</button>
+      <button id="blue" class="btn btn-primary">blue</button>
+      <button id="hide">HIDE</button>
+    </div>
+
+    <script>
+      let btn = document.getElementById("red");
+      let btn1 = document.getElementById("green");
+      let btn2 = document.getElementById("Yellow");
+      let btn3 = document.getElementById("lightblue");
+      let btn4 = document.getElementById("blue");
+      let btn5 = document.getElementById("hide");
+
+      btn.addEventListener("click", (e) => {
+        btn.disabled=true;
+        document.querySelector("body").style.backgroundColor = e.target.id;
+      });
+
+      btn1.addEventListener("click", (e) => {
+        btn1.disabled=true;
+        document.querySelector("body").style.backgroundColor = e.target.id;
+      });
+      
+      btn2.addEventListener("click", (e) => {
+        btn2.disabled=true;
+        document.querySelector("body").style.backgroundColor = e.target.id;
+      });
+      btn3.addEventListener("click", (e) => {
+        btn3.disabled = true;
+        document.querySelector("body").style.backgroundColor = e.target.id;
+      });
+      
+      btn4.addEventListener("click", (e) => {
+        e.target.disabled = true;
+        console.log("hello");
+        document.querySelector("body").style.backgroundColor = e.target.id;
+      });
+      btn5.addEventListener("click", (e) => {
+        btn5.disabled = true;
+        document.querySelector("#msg").style.display='none';
+      });
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
