@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap</title>
+
+    <style>
+      .container {
+        border-style: solid;
+        padding: 19px;
+        align-items: center;
+        border-radius: 33px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+      }
+      h1 {
+        border-style: groove;
+        border-width: 13px;
+        text-align: center;
+        border-radius: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-bottom: 50px;
+      }
+
+      #length {
+        padding-top: 6px;
+      }
+
+      .input-m {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        <span> Password Generator</span>
+      </h1>
+      <div class="input-m">
+        <input type="char" placeholder="Generated Password" id="myInput" />
+        <button id="button" disabled >Copy</button>
+      </div>
+      <div class="input-m">
+        <label>Password length</label>
+        <input type="range" id="passwordLength" min="1" max="20" />
+        <!-- <input type="number" id="passwordLength" min="4" max="20" /> -->
+      </div>
+      <div class="input-m">
+        <input type="checkbox" id="customInput" />
+        <label for="customInput">Custom Input</label>
+      </div>
+      <div class="input-m">
+        <input type="checkbox" id="uppercase" />
+        <label for="uppercase">Alphabets(Upper Case)</label>
+      </div>
+      <div class="input-m">
+        <input type="checkbox" id="lowercase" />
+        <label for="lowercase">Alphabets(Lower Case)</label>
+      </div>
+      <div class="input-m">
+        <input type="checkbox" id="numbers" />
+        <label for="numbers">Numbers</label>
+      </div>
+      <div class="input-m">
+        <input type="checkbox" id="symbols" />
+        <label for="symbols">Special Characters</label>
+      </div>
+    </div>
+
+    <script>
+      let resultInput = document.getElementById("myInput");
+
+      let lengthInput = document.getElementById("passwordLength");
+
+      let uppercaseCheckbox = document.getElementById("uppercase");
+      let lowercaseCheckbox = document.getElementById("lowercase");
+      let symbolsCheckbox = document.getElementById("symbols");
+      let numbersCheckbox = document.getElementById("numbers");
+      let customCheckbox = document.getElementById("customInput");
+
+      let button = document.getElementById("button");
+      
+
+      //   Arrow Function Anonyms Function
+
+      let passwordgenerator = () => {
+        let password = "";
+        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lowercase = "abcdefghijklmnopqrstuvwxyz";
+        const numbers = "0123456789";
+        const symbols = "@#$^&";
+
+        let tempStr = "";
+        // If upeercase checked
+        if (uppercaseCheckbox.checked) {
+          tempStr += upperCase;
+        }
+        if (lowercaseCheckbox.checked) {
+          tempStr += lowercase;
+        }
+        if (numbersCheckbox.checked) {
+          tempStr += numbers;
+        }
+        if (symbolsCheckbox.checked) {
+          tempStr += symbols;
+        }
+        if (tempStr.length <= 0) {
+          alert("Not Checked");
+          return;
+        }
+
+        for (i = 0; i < lengthInput.value; i++) {
+          indexChar = Math.floor(Math.random() * tempStr.length + 1);
+
+          password += tempStr.charAt(indexChar);
+          //   password += tempStr[passwordChar];
+
+          if (password.length > lengthInput.value) {
+            break;
+          }
+        }
+        return password;
+      };
+
+      numbersCheckbox.addEventListener("change", () => {
+        resultInput.value = passwordgenerator();
+      });
+      uppercaseCheckbox.addEventListener("change", () => {
+        resultInput.value = passwordgenerator();
+      });
+      lowercaseCheckbox.addEventListener("change", () => {
+        resultInput.value = passwordgenerator();
+      });
+
+      customInput.addEventListener("change",() =>{
+        customInputCheckbox = checked();
+      })
+      if(customInputCheckbox.checked){
+        
+      }
+
+      
+
+      button.addEventListener("click", () => {
+        console.log(passwordgenerator().length);
+        resultInput.value = passwordgenerator();
+      });
+    </script>
+  </body>
+</html>
