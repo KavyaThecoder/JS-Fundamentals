@@ -44,16 +44,18 @@
       </h1>
       <div class="input-m">
         <input type="char" placeholder="Generated Password" id="myInput" />
-        <button id="button" disabled >Copy</button>
+        <button id="button" disabled>Copy</button>
       </div>
       <div class="input-m">
         <label>Password length</label>
         <input type="range" id="passwordLength" min="1" max="20" />
         <!-- <input type="number" id="passwordLength" min="4" max="20" /> -->
       </div>
-      <div class="input-m">
-        <input type="checkbox" id="customInput" />
-        <label for="customInput">Custom Input</label>
+      <div class="input-m" id="customInputBox">
+        <input type="checkbox" id="customInputCheckbox" />
+        <label for="customInputCheckbox">Custom Input</label>
+
+        <!-- append here -->
       </div>
       <div class="input-m">
         <input type="checkbox" id="uppercase" />
@@ -82,10 +84,9 @@
       let lowercaseCheckbox = document.getElementById("lowercase");
       let symbolsCheckbox = document.getElementById("symbols");
       let numbersCheckbox = document.getElementById("numbers");
-      let customCheckbox = document.getElementById("customInput");
+      let customCheckbox = document.getElementById("customInputCheckbox");
 
       let button = document.getElementById("button");
-      
 
       //   Arrow Function Anonyms Function
 
@@ -119,13 +120,27 @@
           indexChar = Math.floor(Math.random() * tempStr.length + 1);
 
           password += tempStr.charAt(indexChar);
-          //   password += tempStr[passwordChar];
 
           if (password.length > lengthInput.value) {
             break;
           }
         }
         return password;
+      };
+
+      
+
+      let customPasswordGenerator = (tempPass) => {
+        let password ="";
+        for (i = 0; i < tempPass.length; i++) {
+          indexChar = Math.floor(Math.random() * tempPass.length + 1);
+
+          password += tempPass.charAt(indexChar);
+
+        }
+        resultInput.value = password;
+        // let tempPass = document.querySelector("customInput").value;
+        console.log(typeof tempPass);
       };
 
       numbersCheckbox.addEventListener("change", () => {
@@ -138,19 +153,42 @@
         resultInput.value = passwordgenerator();
       });
 
-      customInput.addEventListener("change",() =>{
-        customInputCheckbox = checked();
-      })
-      if(customInputCheckbox.checked){
-        
-      }
+      customInputCheckbox.addEventListener("change", () => {
+        if (customInputCheckbox.checked) {
+          uppercaseCheckbox.setAttribute("disabled", "");
+          lowercaseCheckbox.setAttribute("disabled", "");
+          numbersCheckbox.setAttribute("disabled", "");
+          symbolsCheckbox.setAttribute("disabled", "");
 
-      
+          let node = document.createElement("input");
+          node.type = "text";
+          node.placeholder = "Enter your Custom Input";
+          node.id = "customInput";
+          document.querySelector("#customInputBox").append(node);
+
+          document
+            .querySelector("#customInput")
+            .addEventListener("input", (e) => {
+              if (e.target.value.length >= 5) {
+                customPasswordGenerator(e.target.value);
+              }
+            });
+        }
+        if (!customInputCheckbox.checked) {
+          uppercaseCheckbox.removeAttribute("disabled");
+          lowercaseCheckbox.removeAttribute("disabled");
+          numbersCheckbox.removeAttribute("disabled");
+          symbolsCheckbox.removeAttribute("disabled");
+
+          document.querySelector("#customInput").remove();
+        }
+      });
 
       button.addEventListener("click", () => {
         console.log(passwordgenerator().length);
         resultInput.value = passwordgenerator();
       });
     </script>
+    <!-- APPEND CHILD -->
   </body>
 </html>
