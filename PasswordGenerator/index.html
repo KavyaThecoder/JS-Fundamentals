@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bootstrap</title>
+    <title>passwordgenerator</title>
 
     <style>
       .container {
@@ -128,19 +128,18 @@
         return password;
       };
 
-      
-
       let customPasswordGenerator = (tempPass) => {
-        let password ="";
+        let password = "";
         for (i = 0; i < tempPass.length; i++) {
-          indexChar = Math.floor(Math.random() * tempPass.length + 1);
+          indexChar = Math.floor(Math.random() * tempPass.length );
 
           password += tempPass.charAt(indexChar);
-
+          if (password.length > tempPass.value) {
+            break;
+          }
         }
         resultInput.value = password;
         // let tempPass = document.querySelector("customInput").value;
-        console.log(typeof tempPass);
       };
 
       numbersCheckbox.addEventListener("change", () => {
@@ -159,6 +158,7 @@
           lowercaseCheckbox.setAttribute("disabled", "");
           numbersCheckbox.setAttribute("disabled", "");
           symbolsCheckbox.setAttribute("disabled", "");
+          passwordLength.setAttribute("hidden", "");
 
           let node = document.createElement("input");
           node.type = "text";
@@ -169,6 +169,8 @@
           document
             .querySelector("#customInput")
             .addEventListener("input", (e) => {
+              resultInput.value = "";
+
               if (e.target.value.length >= 5) {
                 customPasswordGenerator(e.target.value);
               }
@@ -179,6 +181,7 @@
           lowercaseCheckbox.removeAttribute("disabled");
           numbersCheckbox.removeAttribute("disabled");
           symbolsCheckbox.removeAttribute("disabled");
+          passwordLength.removeAttribute("hidden");
 
           document.querySelector("#customInput").remove();
         }
@@ -189,6 +192,5 @@
         resultInput.value = passwordgenerator();
       });
     </script>
-    <!-- APPEND CHILD -->
   </body>
 </html>
